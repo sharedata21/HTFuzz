@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.13.1: http://docutils.sourceforge.net/" />
+<title>GraphicsMagick Security</title>
+<link rel="stylesheet" href="docutils-articles.css" type="text/css" />
+</head>
+<body>
+
+<div class="banner">
+<img src="images/gm-107x76.png" alt="GraphicMagick logo" width="107" height="76" />
+<span class="title">GraphicsMagick</span>
+<form action="http://www.google.com/search">
+	<input type="hidden" name="domains" value="www.graphicsmagick.org" />
+	<input type="hidden" name="sitesearch" value="www.graphicsmagick.org" />
+    <span class="nowrap"><input type="text" name="q" size="25" maxlength="255" />&nbsp;<input type="submit" name="sa" value="Search" /></span>
+</form>
+</div>
+
+<div class="navmenu">
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="project.html">Project</a></li>
+<li><a href="download.html">Download</a></li>
+<li><a href="README.html">Install</a></li>
+<li><a href="Hg.html">Source</a></li>
+<li><a href="NEWS.html">News</a> </li>
+<li><a href="utilities.html">Utilities</a></li>
+<li><a href="programming.html">Programming</a></li>
+<li><a href="reference.html">Reference</a></li>
+</ul>
+</div>
+<div class="document" id="graphicsmagick-security">
+<h1 class="title">GraphicsMagick Security</h1>
+
+<!-- -*- mode: rst -*- -->
+<!-- This text is in reStucturedText format, so it may look a bit odd. -->
+<!-- See http://docutils.sourceforge.net/rst.html for details. -->
+<div class="section" id="background">
+<h1>Background</h1>
+<p>Although GraphicsMagick is image processing software, security is a
+very important consideration for GraphicsMagick.  GraphicsMagick may
+be used to open files and URLs produced by an untrusted party.  Given
+a suitable weakness (which we make every effort to prevent), an
+intentionally constructed file might be able to cause the software to
+crash, leak memory, request huge amounts memory, run forever, or in
+the worst case execute arbitrary code, including shell code.
+GraphicsMagick is very powerful and complex software supporting many
+capabilities and so untrusted parties should never be allowed to
+submit arbitrary requests into it.</p>
+<p>GraphicsMagick includes the ability to access arbitrary http and ftp
+URLs as well as local image, font, and SVG files.  The SVG renderer
+supports read access to http and ftp URLs as well as local files
+according to the SVG specification.  Since URLs and local file paths
+may be included in SVG files, untrusted SVG files may create a Server
+Side Request Forgery (<a class="reference external" href="https://cwe.mitre.org/data/definitions/918.html">SSRF</a>) vulnerability since URL requests are
+done by the computer executing the SVG, which may be in a realm of
+trust (e.g. inside the firewall and able to access &quot;localhost&quot;
+addresses).</p>
+<p>The GraphicsMagick project is continually striving to eliminate
+conditions in the software which might pose a risk for its users while
+not constraining what its users may do with the software.</p>
+</div>
+<div class="section" id="reporting-issues">
+<h1>Reporting Issues</h1>
+<p>If you become aware of a serious security issue with GraphicsMagick,
+then it may be addressed by email directly to the GraphicsMagick
+maintainers or to the <a class="reference external" href="mailto:graphicsmagick-security&#37;&#52;&#48;graphicsmagick&#46;org">GraphicsMagick Security</a> mail address.  More
+minor issues are best addressed via the <a class="reference external" href="https://sourceforge.net/p/graphicsmagick/bugs/">GraphicsMagick Bug Tracker</a>
+at SourceForge.</p>
+<p>Reporting an issue will allow us to fix it so that future releases of
+the software won't suffer from the problem.</p>
+</div>
+<div class="section" id="safe-use-of-the-software">
+<h1>Safe Use Of The Software</h1>
+<p>You are the first line of defense when it comes to GraphicsMagick
+security!</p>
+<p>If you are operating a server which supports file uploads from
+untrusted users, or delivered via a network protocol such as http,
+ftp, or email, then you should take steps to assure that a problem
+with opening/processing the file does not place the whole server at
+risk.  These are steps which can be taken:</p>
+<ol class="arabic">
+<li><p class="first">Subscribe to the <a class="reference external" href="https://lists.sourceforge.net/lists/listinfo/graphicsmagick-announce">graphicsmagick-announce</a> mailing list so that
+you are informed about new GraphicsMagick releases or special
+security bulletins.</p>
+</li>
+<li><p class="first">Make sure that GraphicsMagick is up to date as reported on the
+GraphicsMagick web site.  Don't simply trust that packages from
+your operating system vendor are kept up to date or are updated to
+include security fixes.  Keeping GraphicsMagick up to date might
+require that you compile GraphicsMagick yourself from source code.</p>
+</li>
+<li><p class="first">Execute the software in a <a class="reference external" href="https://en.wikipedia.org/wiki/Operating-system-level_virtualization">Container</a>, <a class="reference external" href="https://www.freebsd.org/doc/en_US.ISO8859-1/books/handbook/jails.html">FreeBSD Jail</a>, <a class="reference external" href="https://illumos.org/man/5/zones">Solaris
+Zone</a>, or <a class="reference external" href="https://en.wikipedia.org/wiki/Chroot">chrooted</a> environment such that it can not cause harm
+to the system running it.</p>
+</li>
+<li><p class="first">Execute the software as a least-privileged user (e.g. 'nobody').</p>
+</li>
+<li><p class="first">Normalize input file names or any other external inputs so that
+they are under your control and not controlled by an untrusted
+party.  This should include any file name specifications, which may
+include arbitrary 'glob' patterns (wildcards), requiring hours or
+days to complete if sufficiently close long file names exist.</p>
+</li>
+<li><p class="first">Enforce that uploaded files are passed to the expected reader.  For
+example, the uploaded file &quot;file.jpg&quot; is forced to be read by the
+JPEG reader (rather than a reader selected based on header magic
+testing) by using the file name &quot;jpg:file.jpg&quot;.  If the file is not
+really what was indicated, then an error is reported.</p>
+<p>GraphicsMagick supports a great many file types and auto-detects
+many file types based on their content rather than file extension.
+The file which pretends to be an ordinary PNG or JPEG file might be
+something else entirely.  Note that even using independent file
+header testing may not be sufficient since it is possible to
+construct valid files with a header which appears to be several
+different types, but the first type which matches while testing the
+header will be selected.</p>
+</li>
+<li><p class="first">Apply resource limits via the <cite>-limit</cite> option or the
+<cite>MAGICK_LIMIT_*</cite> environment variables (e.g. <cite>export
+MAGICK_LIMIT_PIXELS=30Mp</cite>, <cite>export MAGICK_LIMIT_MEMORY=500Mb</cite>).
+Also consider setting resource limits using the <cite>ulimit</cite> command.</p>
+</li>
+<li><p class="first">Consider using the <cite>MAGICK_CODER_STABILITY</cite> environment variable to
+constrain the supported file formats to the subsets selected by
+<cite>PRIMARY</cite> or <cite>STABLE</cite>.  After setting this environment variable
+(e.g. <cite>export MAGICK_CODER_STABILITY=PRIMARY</cite>), use <cite>gm
+convert -list format</cite> and verify that the format support you need
+is enabled.  Selecting the <cite>PRIMARY</cite> or <cite>STABLE</cite> options blocks
+access of http and ftp URLs (<a class="reference external" href="https://cwe.mitre.org/data/definitions/918.html">SSRF</a> vulnerability), but does not
+block SVG renderer access to read local image files.</p>
+</li>
+</ol>
+<p>Copyright © GraphicsMagick Group 2002 - 2017</p>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,11 @@
+.*\.gdbinit$
+.*core$
+Makefile.old$
+\.bak$
+\.old$
+^Makefile$
+~$
+\.orig$
+\.o$
+\.bak$
+^build_manifest\.sh$

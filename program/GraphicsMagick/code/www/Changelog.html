@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="Docutils 0.13.1: http://docutils.sourceforge.net/" />
+<title></title>
+<link rel="stylesheet" href="docutils-articles.css" type="text/css" />
+</head>
+<body>
+
+<div class="banner">
+<img src="images/gm-107x76.png" alt="GraphicMagick logo" width="107" height="76" />
+<span class="title">GraphicsMagick</span>
+<form action="http://www.google.com/search">
+	<input type="hidden" name="domains" value="www.graphicsmagick.org" />
+	<input type="hidden" name="sitesearch" value="www.graphicsmagick.org" />
+    <span class="nowrap"><input type="text" name="q" size="25" maxlength="255" />&nbsp;<input type="submit" name="sa" value="Search" /></span>
+</form>
+</div>
+
+<div class="navmenu">
+<ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="project.html">Project</a></li>
+<li><a href="download.html">Download</a></li>
+<li><a href="README.html">Install</a></li>
+<li><a href="Hg.html">Source</a></li>
+<li><a href="NEWS.html">News</a> </li>
+<li><a href="utilities.html">Utilities</a></li>
+<li><a href="programming.html">Programming</a></li>
+<li><a href="reference.html">Reference</a></li>
+</ul>
+</div>
+<div class="document">
+
+
+<p>2017-07-04  Bob Friesenhahn  &lt;<a class="reference external" href="mailto:bfriesen&#37;&#52;&#48;simple&#46;dallas&#46;tx&#46;us">bfriesen<span>&#64;</span>simple<span>&#46;</span>dallas<span>&#46;</span>tx<span>&#46;</span>us</a>&gt;</p>
+<blockquote>
+<ul class="simple">
+<li>NEWS.txt: Make sure is up to date.</li>
+<li>www/index.rst: Update for 1.3.26 release.</li>
+<li>version.sh: Update library versioning for 1.3.26 release.</li>
+<li>magick/command.c (BatchCommand): Add ferror() checks around
+batch input loop.</li>
+</ul>
+</blockquote>
+<p>2017-07-03  Glenn Randers-Pehrson  &lt;<a class="reference external" href="mailto:glennrp&#37;&#52;&#48;simple&#46;dallas&#46;tx&#46;us">glennrp<span>&#64;</span>simple<span>&#46;</span>dallas<span>&#46;</span>tx<span>&#46;</span>us</a>&gt;</p>
+<blockquote>
+<ul class="simple">
+<li>coders/png.c: Reject a PNG file if the file size is too small
+(less than 61 bytes).  Reject a JNG file if it is too small (less
+than 147 bytes).</li>
+<li>coders/jpeg.c: Reject a JPEG file if the file size is too small
+(less than 107 bytes).</li>
+</ul>
+</blockquote>
+<p>2017-07-02  Bob Friesenhahn  &lt;<a class="reference external" href="mailto:bfriesen&#37;&#52;&#48;simple&#46;dallas&#46;tx&#46;us">bfriesen<span>&#64;</span>simple<span>&#46;</span>dallas<span>&#46;</span>tx<span>&#46;</span>us</a>&gt;</p>
+<blockquote>
+<ul class="simple">
+<li>coders/dpx.c (ReadDPXImage): Compute required file size and
+verify that sufficient data exists in file before allocating
+memory to decode the image data.  Resolves problem with DPX file
+with valid header (but a huge claimed image width) provided
+provided via email on Thu, 29 Jun 2017 by LCatro.  This issue has
+been assigned CVE-2017-10799.</li>
+</ul>
+</blockquote>
+<p>2016-07-02  Fojtik Jaroslav  &lt;<a class="reference external" href="mailto:JaFojtik&#37;&#52;&#48;seznam&#46;cz">JaFojtik<span>&#64;</span>seznam<span>&#46;</span>cz</a>&gt;</p>
+<blockquote>
+<ul class="simple">
+<li>coders/mat.c Check whether reported object size overflows file size.</li>
+</ul>
+</blockquote>
+<p>2016-07-01  Fojtik Jaroslav  &lt;<a class="reference external" href="mailto:JaFojtik&#37;&#52;&#48;seznam&#46;cz">JaFojtik<span>&#64;</span>seznam<span>&#46;</span>cz</a>&gt;</p>
+<blockquote>
+<ul class="simple">
+<li>coders/mat.c Safety check for forged and or corrupted data.
+This issue has been assigned CVE-2017-10800.</li>
+</ul>
+</blockquote>
+<p>2017-07-01  Bob Friesenhahn  &lt;<a class="reference external" href="mailto:bfriesen&#37;&#52;&#48;simple&#46;dallas&#46;tx&#46;us">bfriesen<span>&#64;</span>simple<span>&#46;</span>dallas<span>&#46;</span>tx<span>&#46;</span>us</a>&gt;</p>
+<blockquote>
+<ul class="simple">
+<li>coders/tiff.c (&quot;QuantumTransferMode&quot;): Use a generalized method
+to enforce that buffer overflow can not happen while importing
+pixels.  Resolves problem with RGB TIFF claiming only one sample
+per pixel provided via email on Thu, 29 Jun 2017 by LCatro.  This
+issue has been assigned CVE-2017-10794.</li>
+</ul>
+</blockquote>
+<p>2017-06-29  Bob Friesenhahn  &lt;<a class="reference external" href="mailto:bfriesen&#37;&#52;&#48;simple&#46;dallas&#46;tx&#46;us">bfriesen<span>&#64;</span>simple<span>&#46;</span>dallas<span>&#46;</span>tx<span>&#46;</span>us</a>&gt;</p>
+<blockquote>
+<ul class="simple">
+<li>magick/command.c: Convert bare 'unsigned int' to MagickPassFail
+where suitable to make intentions clear.  Convert True/False to
+MagickTrue/MagickFalse or MagickPass/MagickFail according to
+purpose.  This is a continuation of a gradual migration and does
+not represent an API change.</li>
+</ul>
+</blockquote>
+<p>2017-06-25  Glenn Randers-Pehrson  &lt;<a class="reference external" href="mailto:glennrp&#37;&#52;&#48;simple&#46;dallas&#46;tx&#46;us">glennrp<span>&#64;</span>simple<span>&#46;</span>dallas<span>&#46;</span>tx<span>&#46;</span>us</a>&gt;</p>
+<blockquote>
+<ul class="simple">
+<li>coders/png.c: Avoid NULL dereference when MAGN chunk processing
+fails (<a class="reference external" href="https://sourceforge.net/p/graphicsmagick/bugs/426/">https://sourceforge.net/p/graphicsmagick/bugs/426/</a>). Expand
+TABs.</li>
+</ul>
+</blockquote>
+<p>2017-06-25  Bob Friesenhahn  &lt;<a class="reference external" href="mailto:bfriesen&#37;&#52;&#48;simple&#46;dallas&#46;tx&#46;us">bfriesen<span>&#64;</span>simple<span>&#46;</span>dallas<span>&#46;</span>tx<span>&#46;</span>us</a>&gt;</p>
+<blockquote>
+<ul class="simple">
+<li>NEWS.txt: Update NEWS with changes since the previous release.</li>
+<li>www/programming.rst: Switch the Lua link to
+<a class="reference external" href="https://github.com/arcapos/luagraphicsmagick">https://github.com/arcapos/luagraphicsmagick</a>, which is a more
+complete and direct interface from Lua to GraphicsMagick's Wand
+API.</li>
+</ul>
+</blockquote>
+<p>2017-06-24  Bob Friesenhahn  &lt;<a class="reference external" href="mailto:bfriesen&#37;&#52;&#48;simple&#46;dallas&#46;tx&#46;us">bfriesen<span>&#64;</span>simple<span>&#46;</span>dallas<span>&#46;</span>tx<span>&#46;</span>us</a>&gt;</p>
+<blockquote>
+<ul class="simple">
+<li>VisualMagick/installer/gm-foo-dll.iss: Remove PerlMagick from
+the slim Inno Setup installer builder and remove mention of
+PerlMagick from the installer documentation.</li>
+<li>TclMagick/generic/TclMagick.c (magickCmd): Resolve SourceForge
+patch #51 &quot;TclMagick: memory access error; possible segfault&quot;.
+(newMagickObj): Fix formatting of pointer value so it is 64-bit
+safe.  Resolves SourceForge patch #50 &quot;TclMagick: 64-bit
+portability issue&quot;.</li>
+<li>coders/pict.c (ReadPICTImage): Avoid possible use of negative
+value when indexing array, which would cause buffer overflow.
+Resolves SourceForge issue #427 &quot;One possible buffer overflow
+vulnerability in
+GraphicsMagick-1.3.25/coders/pict.c:ReadPICTImage()&quot;.</li>
+</ul>
+</blockquote>
+<p>2017-06-22  Glenn Randers-Pehrson  &lt;<a class="reference external" href="mailto:glennrp&#37;&#52;&#48;simple&#46;dallas&#46;tx&#46;us">glennrp<span>&#64;</span>simple<span>&#46;</span>dallas<span>&#46;</span>tx<span>&#46;</span>us</a>&gt;</p>
+<blockquote>
+<ul class="simple">
+<li>coders/png.c: Stop memory leak when reading invalid JNG image.
+Fixes CVE-2017-8350.</li>
+</ul>
+</blockquote>
+<p>2017-06-18  Bob Friesenhahn  &lt;<a class="reference external" href="mailto:bfriesen&#37;&#52;&#48;simple&#46;dallas&#46;tx&#46;us">bfriesen<span>&#64;</span>simple<span>&#46;</span>dallas<span>&#46;</span>tx<span>&#46;</span>us</a>&gt;</p>
+<blockquote>
+<ul class="simple">
+<li>coders/png.c: Fix lcms2.h inclusion logic.</li>
+<li>wand/magick_wand.c (MagickSetImageOrientation): Eliminate use of
+snprintf, which is not supported by older Visual Studio.</li>
+</ul>
+</blockquote>
+<p>2017-06-09  Glenn Randers-Pehrson  &lt;<a class="reference external" href="mailto:glennrp&#37;&#52;&#48;simple&#46;dallas&#46;tx&#46;us">glennrp<span>&#64;</span>simple<span>&#46;</span>dallas<span>&#46;</span>tx<span>&#46;</span>us</a>&gt;</p>
+<blockquote>
+<ul class="simple">
+<li>coders/png.c: Accept exIf chunks whose data segment
+erroneously begins with &quot;Exif00&quot;.</li>
+</ul>
+</blockquote>
+<p>2017-06-01  Glenn Randers-Pehrson  &lt;<a class="reference external" href="mailto:glennrp&#37;&#52;&#48;simple&#46;dallas&#46;tx&#46;us">glennrp<span>&#64;</span>simple<span>&#46;</span>dallas<span>&#46;</span>tx<span>&#46;</span>us</a>&gt;</p>
+<blockquote>
+<ul class="simple">
+<li>coders/png.c: Removed experimental zxIF chunk support.  That
+proposal is dead.</li>
+</ul>
+</blockquote>
+<p>2017-05-27  Bob Friesenhahn  &lt;<a class="reference external" href="mailto:bfriesen&#37;&#52;&#48;simple&#46;dallas&#46;tx&#46;us">bfriesen<span>&#64;</span>simple<span>&#46;</span>dallas<span>&#46;</span>tx<span>&#46;</span>us</a>&gt;</p>
+<blockquote>
+<ul class="simple">
+<li>config/log.mgk: Added documentation suggested by SourceForge
+issue #419 &quot;Consider a small patch to log.mgk&quot;.</li>
+<li>www/Changes.rst: Add missing link to most recent changes.</li>
+</ul>
+</blockquote>
+<p>2017-05-24  Bob Friesenhahn  &lt;<a class="reference external" href="mailto:bfriesen&#37;&#52;&#48;simple&#46;dallas&#46;tx&#46;us">bfriesen<span>&#64;</span>simple<span>&#46;</span>dallas<span>&#46;</span>tx<span>&#46;</span>us</a>&gt;</p>
+<blockquote>
+<ul class="simple">
+<li>www/Magick++/Image.rst: Improve documentation for Magick++
+Image::iccColorProfile() and Image::renderingIntent().</li>
+</ul>
+</blockquote>
+<p>2017-05-21  Bob Friesenhahn  &lt;<a class="reference external" href="mailto:bfriesen&#37;&#52;&#48;simple&#46;dallas&#46;tx&#46;us">bfriesen<span>&#64;</span>simple<span>&#46;</span>dallas<span>&#46;</span>tx<span>&#46;</span>us</a>&gt;</p>
+<blockquote>
+<ul class="simple">
+<li>tiff: Update to libtiff 4.0.8.</li>
+</ul>
+</blockquote>
+<p>2017-03-19  Glenn Randers-Pehrson  &lt;<a class="reference external" href="mailto:glennrp&#37;&#52;&#48;simple&#46;dallas&#46;tx&#46;us">glennrp<span>&#64;</span>simple<span>&#46;</span>dallas<span>&#46;</span>tx<span>&#46;</span>us</a>&gt;</p>
+<blockquote>
+<ul class="simple">
+<li>coders/png.c: Quieted a new Coverity complaint about a potential
+text buffer overrun.</li>
+</ul>
+</blockquote>
+<p>2017-03-19  Bob Friesenhahn  &lt;<a class="reference external" href="mailto:bfriesen&#37;&#52;&#48;simple&#46;dallas&#46;tx&#46;us">bfriesen<span>&#64;</span>simple<span>&#46;</span>dallas<span>&#46;</span>tx<span>&#46;</span>us</a>&gt;</p>
+<blockquote>
+<ul class="simple">
+<li>magick/image.c (SetImageInfo): Ignore empty magic prefix
+specification and do not remove colon character from start of
+filename.  Resolves SourceForge bug #415 &quot;Inconsistent Behavior w/
+input_file Parameter&quot;.</li>
+</ul>
+</blockquote>
+<p>2017-03-18  Glenn Randers-Pehrson  &lt;<a class="reference external" href="mailto:glennrp&#37;&#52;&#48;simple&#46;dallas&#46;tx&#46;us">glennrp<span>&#64;</span>simple<span>&#46;</span>dallas<span>&#46;</span>tx<span>&#46;</span>us</a>&gt;</p>
+<blockquote>
+<ul class="simple">
+<li>coders/png.c: Added new private orNT PNG chunk, to
+preserve image-&gt;orientation when it is defined and not
+the default TopLeft.</li>
+<li>coders/jpeg.c: Mention image-&gt;orientation in the log when
+writing a JPEG.</li>
+</ul>
+</blockquote>
+<p>2017-03-15  Glenn Randers-Pehrson  &lt;<a class="reference external" href="mailto:glennrp&#37;&#52;&#48;simple&#46;dallas&#46;tx&#46;us">glennrp<span>&#64;</span>simple<span>&#46;</span>dallas<span>&#46;</span>tx<span>&#46;</span>us</a>&gt;</p>
+<blockquote>
+<ul class="simple">
+<li>coders/png.c (WriteOnePNGImage): Add version info about
+gm, libpng, zlib, and lcms to the PNG debug log.</li>
+</ul>
+</blockquote>
+<p>2017-03-04  Bob Friesenhahn  &lt;<a class="reference external" href="mailto:bfriesen&#37;&#52;&#48;simple&#46;dallas&#46;tx&#46;us">bfriesen<span>&#64;</span>simple<span>&#46;</span>dallas<span>&#46;</span>tx<span>&#46;</span>us</a>&gt;</p>
+<blockquote>
+<ul class="simple">
+<li>magick/command.c (ImportImageCommand): Fix handling of -frame
+options. Option handling was incorrect due to option checking the
+frame option after it had been freed.  Checking the frame dash
+option before freeing the argument solves the problem.  From patch
+provided by Victor Ananjevsky as SourceForge patch #49 &quot;-frame
+doesn't work in gm import&quot;.</li>
+<li>Magick++/lib/Image.cpp (attribute): Added Image attribute method
+which accepts a 'char *' argument, and will remove the attribute
+if the value argument is NULL.  From patch provided by &quot;Gints&quot; as
+SourceForge patch #46 &quot;C++ api - method to clear/remove
+attribute&quot;.</li>
+<li>VisualMagick/configure/configure.cpp (InitInstance): Applied
+patch by Paul McConkey to allow the quantum command line argument
+to set the default value in the wizard drop list.  This allows
+setting the quantum depth when the /nowizard argument was
+supplied.  Resolves SourceForge patch #48 &quot;When running from the
+command line configure.exe does not use the quantum argument&quot;.
+The provided configure.exe still needs to be rebuilt to
+incorporate this change.</li>
+<li>magick/command.c (MogrifyImage): The -orient command now also
+updates the orientation in the EXIF profile, if it exists.</li>
+<li>Magick++/lib/Image.cpp (orientation): Update orientation in EXIF
+profile, if it exists.</li>
+</ul>
+</blockquote>
+<p>2017-03-03  Bob Friesenhahn  &lt;<a class="reference external" href="mailto:bfriesen&#37;&#52;&#48;simple&#46;dallas&#46;tx&#46;us">bfriesen<span>&#64;</span>simple<span>&#46;</span>dallas<span>&#46;</span>tx<span>&#46;</span>us</a>&gt;</p>
+<blockquote>
+<ul class="simple">
+<li>coders/jp2.c: Support PGX JPEG 2000 format for reading and
+writing (within the bounds of what JasPer supports).</li>
+</ul>
+</blockquote>
+<p>2017-02-23  Bob Friesenhahn  &lt;<a class="reference external" href="mailto:bfriesen&#37;&#52;&#48;simple&#46;dallas&#46;tx&#46;us">bfriesen<span>&#64;</span>simple<span>&#46;</span>dallas<span>&#46;</span>tx<span>&#46;</span>us</a>&gt;</p>
+<blockquote>
+<ul class="simple">
+<li>coders/tiff.c (QuantumTransferMode): Fix out of bounds read when
+reading CMYKA TIFF which claims to have only 2 samples per pixel.
+Problem was reported via email on February 15, 2017 by Valon
+Chu. This issue was assigned CVE-2017-6335.</li>
+</ul>
+</blockquote>
+<p>2017-01-29  Bob Friesenhahn  &lt;<a class="reference external" href="mailto:bfriesen&#37;&#52;&#48;simple&#46;dallas&#46;tx&#46;us">bfriesen<span>&#64;</span>simple<span>&#46;</span>dallas<span>&#46;</span>tx<span>&#46;</span>us</a>&gt;</p>
+<blockquote>
+<ul class="simple">
+<li>doc/options.imdoc (-geometry): Geometry documentation changes
+suggested by Jon Wong.</li>
+</ul>
+</blockquote>
+<p>2017-01-26  Glenn Randers-Pehrson  &lt;<a class="reference external" href="mailto:glennrp&#37;&#52;&#48;simple&#46;dallas&#46;tx&#46;us">glennrp<span>&#64;</span>simple<span>&#46;</span>dallas<span>&#46;</span>tx<span>&#46;</span>us</a>&gt;</p>
+<blockquote>
+<ul class="simple">
+<li>coders/png.c: Added support for a proposed new PNG chunk
+(zxIf, read-only) that is currently being discussed on the
+png-mng-misc at lists.sourceforge.net mailing list.  Enable
+exIf and zxIf with CPPFLAGS=&quot;-DexIf_SUPPORTED -DxzIf_SUPPORTED&quot;.
+If exIf is enabled, only the uncompressed exIF chunk will be
+written and the hex-encoded zTXt chunk containing the raw Exif
+profile won't be written.</li>
+</ul>
+</blockquote>
+<p>2017-01-25  Bob Friesenhahn  &lt;<a class="reference external" href="mailto:bfriesen&#37;&#52;&#48;simple&#46;dallas&#46;tx&#46;us">bfriesen<span>&#64;</span>simple<span>&#46;</span>dallas<span>&#46;</span>tx<span>&#46;</span>us</a>&gt;</p>
+<blockquote>
+<ul class="simple">
+<li>coders/msl.c (MSLStartElement): Change test for NULL image
+pointer to before it is used rather than after it is used.
+Problem reported by Petr Gajdos on 2017-01-25.</li>
+</ul>
+</blockquote>
+<p>2017-01-22  Bob Friesenhahn  &lt;<a class="reference external" href="mailto:bfriesen&#37;&#52;&#48;simple&#46;dallas&#46;tx&#46;us">bfriesen<span>&#64;</span>simple<span>&#46;</span>dallas<span>&#46;</span>tx<span>&#46;</span>us</a>&gt;</p>
+<blockquote>
+<ul class="simple">
+<li>TclMagick/unix/m4/tcl.m4: Update tcl.m4 to TEA 3.10.  File
+supplied by Massimo Manghi.</li>
+</ul>
+</blockquote>
+<p>2017-01-21  Glenn Randers-Pehrson  &lt;<a class="reference external" href="mailto:glennrp&#37;&#52;&#48;simple&#46;dallas&#46;tx&#46;us">glennrp<span>&#64;</span>simple<span>&#46;</span>dallas<span>&#46;</span>tx<span>&#46;</span>us</a>&gt;</p>
+<blockquote>
+<ul class="simple">
+<li>coders/png.c: Added support for a proposed new PNG
+chunk (exIf read-write, eXIf read-only) that is currently
+being discussed on the png-mng-misc at lists.sourceforge.net
+mailing list.</li>
+</ul>
+</blockquote>
+<p>2017-01-21  Glenn Randers-Pehrson  &lt;<a class="reference external" href="mailto:glennrp&#37;&#52;&#48;simple&#46;dallas&#46;tx&#46;us">glennrp<span>&#64;</span>simple<span>&#46;</span>dallas<span>&#46;</span>tx<span>&#46;</span>us</a>&gt;</p>
+<blockquote>
+<ul class="simple">
+<li>coders/png.c: Added read_user_chunk_callback() function
+and used it to implement a private PNG caNv (canvas) chunk
+for remembering the original dimensions and offsets when an
+image is cropped.  Previously we used the oFFs chunk for this
+purpose, but this had potential conflicts with other applications
+that also use the oFFs chunk.</li>
+</ul>
+</blockquote>
+<p>2017-01-07  Bob Friesenhahn  &lt;<a class="reference external" href="mailto:bfriesen&#37;&#52;&#48;simple&#46;dallas&#46;tx&#46;us">bfriesen<span>&#64;</span>simple<span>&#46;</span>dallas<span>&#46;</span>tx<span>&#46;</span>us</a>&gt;</p>
+<blockquote>
+<ul class="simple">
+<li>TclMagick/Makefile.am (AM_DISTCHECK_CONFIGURE_FLAGS): Applied
+patch by Massimo Manghi to set AM_DISTCHECK_CONFIGURE_FLAGS so
+that 'make distcheck' remembers configuration options, and also to
+uninstall pkgIndex.tcl.</li>
+<li>magick/image.c (SetImageEx): Use PixelIterateMonoSet() for
+possibly improved efficiency.</li>
+<li>magick/pixel_iterator.c (PixelIterateMonoSet): New pixel
+iterator intended for use when initializing image pixels, without
+regard to existing values.</li>
+</ul>
+</blockquote>
+<p>2017-01-01  Bob Friesenhahn  &lt;<a class="reference external" href="mailto:bfriesen&#37;&#52;&#48;simple&#46;dallas&#46;tx&#46;us">bfriesen<span>&#64;</span>simple<span>&#46;</span>dallas<span>&#46;</span>tx<span>&#46;</span>us</a>&gt;</p>
+<blockquote>
+<ul class="simple">
+<li>Copyright.txt: Bump copyright years and rotate ChangeLog.</li>
+</ul>
+</blockquote>
+</div>
+</body>
+</html>

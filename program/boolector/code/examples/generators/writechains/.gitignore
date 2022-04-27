@@ -1,0 +1,3 @@
+writechains
+*.btor
+*.smt

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--MP4Box dump trace-->
+<IsoMediaFile xmlns="urn:mpeg:isobmff:schema:file:2016" Name="small_movie.mp4">
+<FileTypeBox Size="24" Type="ftyp" Specification="p12" Container="file" MajorBrand="mp42" MinorVersion="19529854">
+<BrandEntry AlternateBrand="mp42"/>
+<BrandEntry AlternateBrand="isom"/>
+</FileTypeBox>
+<FreeSpaceBox Size="8" Type="free" Specification="p12" Container="*" dataSize="0">
+</FreeSpaceBox>
+<MediaDataBox Size="405" Type="mdat" Specification="p12" Container="file" dataSize="397">
+</MediaDataBox>
+<MovieBox Size="830" Type="moov" Specification="p12" Container="file" >
+<MovieHeaderBox Size="108" Type="mvhd" Version="0" Flags="0" Specification="p12" Container="moov" CreationTime="3498795264" ModificationTime="3498795264" TimeScale="90000" Duration="90000" NextTrackID="2">
+</MovieHeaderBox>
+<TrackBox Size="714" Type="trak" Specification="p12" Container="moov" >
+<TrackHeaderBox Size="92" Type="tkhd" Version="0" Flags="7" Specification="p12" Container="trak" CreationTime="3498795264" ModificationTime="3498795264" TrackID="1" Duration="90000" Width="48.00" Height="144.00">
+<Matrix m11="0x00010000" m12="0x00000000" m13="0x00000000" m21="0x00000000" m22="0x00010000" m23="0x00000000" m31="0x00000000" m32="0x00000000" m33="0x40000000"/>
+</TrackHeaderBox>
+<MediaBox Size="614" Type="mdia" Specification="p12" Container="trak" >
+<MediaHeaderBox Size="32" Type="mdhd" Version="0" Flags="0" Specification="p12" Container="mdia" CreationTime="3498795264" ModificationTime="3498795264" TimeScale="12" Duration="12" LanguageCode="eng">
+</MediaHeaderBox>
+<HandlerBox Size="52" Type="hdlr" Version="0" Flags="0" Specification="p12" Container="mdia meta minf" hdlrType="vide" Name="Video Media Handler" reserved1="0" reserved2="data:application/octet-string,000000000000000000000000">
+</HandlerBox>
+<MediaInformationBox Size="522" Type="minf" Specification="p12" Container="mdia" >
+<VideoMediaHeaderBox Size="20" Type="vmhd" Version="0" Flags="1" Specification="p12" Container="minf" >
+</VideoMediaHeaderBox>
+<DataInformationBox Size="36" Type="dinf" Specification="p12" Container="minf meta" >
+<DataReferenceBox Size="28" Type="dref" Version="0" Flags="0" Specification="p12" Container="dinf" >
+<URLDataEntryBox Size="12" Type="url " Version="0" Flags="1" Specification="p12" Container="dref" >
+<!--Data is contained in the movie file-->
+</URLDataEntryBox>
+</DataReferenceBox>
+</DataInformationBox>
+<SampleTableBox Size="458" Type="stbl" Specification="p12" Container="minf" >
+<SampleDescriptionBox Size="162" Type="stsd" Version="0" Flags="0" Specification="p12" Container="stbl" >
+<AVCSampleEntryBox Size="146" Type="avc1" Specification="p15" Container="stsd"  DataReferenceIndex="1" Width="48" Height="144" XDPI="4718592" YDPI="4718592" BitDepth="24" CompressorName="AVC Coding"
+>
+<AVCConfigurationBox Size="60" Type="avcC" Specification="p15" Container="avc1 avc2 avc3 avc4 encv resv ipco" >
+<AVCDecoderConfigurationRecord configurationVersion="1" AVCProfileIndication="100" profile_compatibility="64" AVCLevelIndication="20" nal_unit_size="4" chroma_format="YUV 4:2:0" luma_bit_depth="8" chroma_bit_depth="8">
+<SequenceParameterSet size="36" content="data:application/octet-string,67640014AC2CA4313B01520C0C0C80000003008000000C704007D00321F8C70768489658"/>
+<PictureParameterSet size="5" content="data:application/octet-string,68EB735250"/>
+</AVCDecoderConfigurationRecord>
+</AVCConfigurationBox>
+</AVCSampleEntryBox>
+</SampleDescriptionBox>
+<TimeToSampleBox Size="24" Type="stts" Version="0" Flags="0" Specification="p12" Container="stbl" EntryCount="1">
+<TimeToSampleEntry SampleDelta="1" SampleCount="12"/>
+<!-- counted 12 samples in STTS entries -->
+</TimeToSampleBox>
+<CompositionOffsetBox Size="96" Type="ctts" Version="0" Flags="0" Specification="p12" Container="stbl" EntryCount="10">
+<CompositionOffsetEntry CompositionOffset="1" SampleCount="1"/>
+<CompositionOffsetEntry CompositionOffset="3" SampleCount="1"/>
+<CompositionOffsetEntry CompositionOffset="0" SampleCount="2"/>
+<CompositionOffsetEntry CompositionOffset="4" SampleCount="1"/>
+<CompositionOffsetEntry CompositionOffset="1" SampleCount="1"/>
+<CompositionOffsetEntry CompositionOffset="-1" SampleCount="1"/>
+<CompositionOffsetEntry CompositionOffset="0" SampleCount="1"/>
+<CompositionOffsetEntry CompositionOffset="3" SampleCount="1"/>
+<CompositionOffsetEntry CompositionOffset="0" SampleCount="2"/>
+<CompositionOffsetEntry CompositionOffset="-1" SampleCount="1"/>
+<!-- counted 12 samples in CTTS entries -->
+</CompositionOffsetBox>
+<SampleToChunkBox Size="52" Type="stsc" Version="0" Flags="0" Specification="p12" Container="stbl" EntryCount="3">
+<SampleToChunkEntry FirstChunk="1" SamplesPerChunk="5" SampleDescriptionIndex="1"/>
+<SampleToChunkEntry FirstChunk="2" SamplesPerChunk="4" SampleDescriptionIndex="1"/>
+<SampleToChunkEntry FirstChunk="3" SamplesPerChunk="3" SampleDescriptionIndex="1"/>
+<!-- counted 12 samples in STSC entries (could be less than sample count) -->
+</SampleToChunkBox>
+<SampleSizeBox Size="68" Type="stsz" Version="0" Flags="0" Specification="p12" Container="stbl" SampleCount="12">
+<SampleSizeEntry Size="124"/>
+<SampleSizeEntry Size="64"/>
+<SampleSizeEntry Size="25"/>
+<SampleSizeEntry Size="25"/>
+<SampleSizeEntry Size="24"/>
+<SampleSizeEntry Size="21"/>
+<SampleSizeEntry Size="21"/>
+<SampleSizeEntry Size="21"/>
+<SampleSizeEntry Size="25"/>
+<SampleSizeEntry Size="21"/>
+<SampleSizeEntry Size="21"/>
+<SampleSizeEntry Size="5"/>
+</SampleSizeBox>
+<ChunkOffsetBox Size="28" Type="stco" Version="0" Flags="0" Specification="p12" Container="stbl" EntryCount="3">
+<ChunkEntry offset="40"/>
+<ChunkEntry offset="302"/>
+<ChunkEntry offset="390"/>
+</ChunkOffsetBox>
+<SyncSampleBox Size="20" Type="stss" Version="0" Flags="0" Specification="p12" Container="stbl" EntryCount="1">
+<SyncSampleEntry sampleNumber="1"/>
+</SyncSampleBox>
+</SampleTableBox>
+</MediaInformationBox>
+</MediaBox>
+</TrackBox>
+</MovieBox>
+</IsoMediaFile>

@@ -1,0 +1,14 @@
+*.gcov
+*.out
+*.tmp
+*.baf
+*.gch
+*~
+*.btor
+*.smt
+*.smt2
+*.swp
+*.trace
+makefile
+build/
+doc/

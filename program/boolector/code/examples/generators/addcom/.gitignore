@@ -1,0 +1,4 @@
+*.smt
+*.aig
+*.cnf
+*.log
