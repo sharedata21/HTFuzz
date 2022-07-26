@@ -1,2 +1,2 @@
-# MS-Fuzz
-MS-Fuzz data
+# HTFuzz
+HTFuzz tool and data
